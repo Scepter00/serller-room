@@ -1,0 +1,58 @@
+{
+  "name": "serller",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Serller — a Web3 social application built around Stellar. Wallet identity, real XLM tipping, content notarization.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "setup": "node scripts/setup-env.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy --schema prisma/schema.postgres.prisma",
+    "db:sync:prod": "node scripts/gen-postgres-schema.mjs && prisma validate --schema prisma/schema.postgres.prisma",
+    "db:seed": "node prisma/seed.mjs",
+    "db:studio": "prisma studio",
+    "indexer": "node indexer/index.mjs",
+    "stellar:fund": "node scripts/fund-friendbot.mjs",
+    "contract:build": "cd contracts/content-notary && cargo build --target wasm32v1-none --release",
+    "contract:test": "cd contracts/content-notary && cargo test"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "@stellar/freighter-api": "^6.0.1",
+    "@stellar/stellar-sdk": "^16.2.0",
+    "jose": "^6.2.8",
+    "lucide-react": "^1.31.0",
+    "next": "^15.5.23",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.55.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^20.17.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.30.0",
+    "eslint-config-next": "^15.5.23",
+    "postcss": "^8.5.0",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.9"
+  }
+}

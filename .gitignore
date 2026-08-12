@@ -1,0 +1,55 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# production
+/build
+
+# env / secrets
+.env
+.env.local
+.env*.local
+!.env.example
+
+# database
+/prisma/*.db
+/prisma/*.db-journal
+
+# testing
+/coverage
+/test-results/
+/playwright-report/
+/blob-report/
+
+# misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+
+# contracts
+/target
+**/target/
+
+# local uploads (dev mock)
+/public/uploads/*
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# android build artifacts (signing keys are NEVER committed)
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+*.keystore
+*.jks

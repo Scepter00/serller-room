@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Semantic color tokens (light) ─────────────────────────── */
+:root {
+  --bg: 248 248 252;
+  --surface: 255 255 255;
+  --surface-2: 243 243 248;
+  --border: 228 228 238;
+  --text-1: 17 17 27;
+  --text-2: 82 82 105;
+  --text-3: 122 122 143;
+  --brand: 124 58 237; /* violet-600 */
+  --brand-2: 59 130 246; /* blue-500 */
+  --accent: 245 158 11; /* amber-500 (tips) */
+  --success: 16 185 129;
+  --danger: 239 68 68;
+  --ring: 139 92 246;
+}
+
+/* ── Semantic color tokens (dark) ──────────────────────────── */
+.dark {
+  --bg: 9 9 16;
+  --surface: 17 17 28;
+  --surface-2: 25 25 40;
+  --border: 42 42 62;
+  --text-1: 242 242 250;
+  --text-2: 176 176 196;
+  --text-3: 128 128 152;
+  --brand: 139 92 246;
+  --brand-2: 96 165 250;
+  --accent: 251 191 36;
+  --success: 52 211 153;
+  --danger: 248 113 113;
+  --ring: 167 139 250;
+}
+
+@theme inline {
+  --color-bg: rgb(var(--bg));
+  --color-surface: rgb(var(--surface));
+  --color-surface-2: rgb(var(--surface-2));
+  --color-border: rgb(var(--border));
+  --color-t1: rgb(var(--text-1));
+  --color-t2: rgb(var(--text-2));
+  --color-t3: rgb(var(--text-3));
+  --color-brand: rgb(var(--brand));
+  --color-brand-2: rgb(var(--brand-2));
+  --color-accent: rgb(var(--accent));
+  --color-success: rgb(var(--success));
+  --color-danger: rgb(var(--danger));
+  --color-ring: rgb(var(--ring));
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-t1);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: rgb(var(--brand) / 0.25);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--border)) transparent;
+  }
+}
+
+@utility gradient-brand {
+  background-image: linear-gradient(120deg, rgb(var(--brand)), rgb(var(--brand-2)));
+}
+
+@utility gradient-text {
+  background-image: linear-gradient(120deg, rgb(var(--brand)), rgb(var(--brand-2)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Focus visibility for keyboard users (accessibility) */
+:focus-visible {
+  outline: 2px solid rgb(var(--ring));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Subtle card hover lift */
+.card-hover {
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+.card-hover:hover {
+  background: rgb(var(--surface-2) / 0.6);
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--surface-2)) 25%,
+    rgb(var(--border)) 50%,
+    rgb(var(--surface-2)) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+/* Simple fade/slide in for feed items */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise-in {
+  animation: rise-in 220ms ease-out both;
+}
